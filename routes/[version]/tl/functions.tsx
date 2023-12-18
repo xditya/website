@@ -1,0 +1,62 @@
+import { RenderContext } from "$fresh/server.ts";
+import { getDocs } from "../../../docs.ts";
+import { commonPrefixes, fixName } from "../../../misc.ts";
+import versions from "../../../versions.ts";
+
+export default async function Functions(_req: Request, ctx: RenderContext) {
+  const preview = ctx.url.search.includes("?preview");
+  const { tlFunctions } = await getDocs(preview ? "gh" : versions[0]);
+
+  return (
+    <>
+      <h1 id="methods" class="pb-3 mt-2.5 mb-1 font-bold text-4xl">
+        TL Functions
+      </h1>
+      <div class="flex flex-col">
+        {tlFunctions
+          .filter((v) =>
+            commonPrefixes.every((v_) => !fixName(v.name).startsWith(v_))
+          )
+          .map((v) => (
+            <a
+              href={`/${preview ? "gh/" : ""}tl/functions/${fixName(v.name)}`}
+              class="link break-all"
+            >
+              {fixName(v.name)}
+            </a>
+          ))}
+        {commonPrefixes.map((v) =>
+          (() => {
+            const funcs = tlFunctions.filter((v_) =>
+              fixName(v_.name).startsWith(v)
+            );
+            if (funcs.length < 1) {
+              return null;
+            }
+            return (
+              <>
+                <h2
+                  class="mt-2.5 mb-4 mt-14 font-bold text-2xl"
+                  id={v[0] +
+                    v.slice(1).replaceAll(".", "")}
+                >
+                  {v[0].toUpperCase() + v.slice(1).replaceAll(".", "")}
+                </h2>
+                {funcs.map((v) => (
+                  <a
+                    href={`/${preview ? "gh/" : ""}tl/functions/${
+                      fixName(v.name)
+                    }`}
+                    class="link break-all"
+                  >
+                    {fixName(v.name)}
+                  </a>
+                ))}
+              </>
+            );
+          })()
+        )}
+      </div>
+    </>
+  );
+}

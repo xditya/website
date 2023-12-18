@@ -1,0 +1,44 @@
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --db: #eeeeee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --fg: #ffffff;
+    --db: #212121;
+  }
+}
+
+::selection,
+*::selection {
+  color: var(--bg);
+  background-color: var(--fg);
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+code {
+  font-family: "Source Code Pro", monospace;
+}
+
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.language-bash:before {
+  content: "$ ";
+  opacity: 0.5;
+}
+
+.n {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
