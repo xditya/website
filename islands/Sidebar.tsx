@@ -106,8 +106,8 @@ export function Sidebar({ pathname }: { pathname: string }) {
         </div>
       </div>
       <div class="hidden lg:flex justify-end relative border-r border-db bg-clip-padding">
-        <div class="w-[200px] max-w-[200px]">
-          <div class="fixed h-screen px-5 pl-5 py-3 overflow-y-auto flex flex-col break-all w-[200px] gap-3">
+        <div class="w-[230px] max-w-[230px]">
+          <div class="fixed h-screen px-5 py-3 overflow-y-auto flex flex-col break-all w-[230px] gap-3">
             {links.map(([k, v]) => (
               <div>
                 <MutedText uppercase small>{k}</MutedText>
