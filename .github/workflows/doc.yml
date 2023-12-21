@@ -15,7 +15,7 @@ jobs:
         with:
           deno-version: vx.x.x
 
-      - run: deno run --allow-env --allow-net --allow-read --allow-write write.ts
+      - run: deno run --allow-env --allow-net --allow-read --allow-run --allow-write write.ts
 
       - uses: ad-m/github-push-action@master
         with:
