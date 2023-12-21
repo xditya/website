@@ -23,6 +23,5 @@ if (!versions.includes(lastTag)) {
   await $`deno fmt`;
   await $`git add doc/*`;
   await $`git add versions.ts`;
-  await $`git commit -m ${lastTag}`;
-  await $`git push`;
+  await $`git -c "user.name=github-actions[bot]" -c "user.email=41898282+github-actions[bot]@users.noreply.github.com" -c "commit.gpgsign=false" commit -m ${lastTag}`;
 }

@@ -1,0 +1,22 @@
+name: Doc
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+
+      - run: deno run --allow-env --allow-net --allow-read --allow-write write.ts
+
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
