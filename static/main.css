@@ -1,3 +1,5 @@
+@import "inter.css";
+
 :root {
   --bg: #ffffff;
   --fg: #000000;
@@ -19,7 +21,7 @@
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: InterVariable, system-ui, sans-serif;
 }
 
 code {
