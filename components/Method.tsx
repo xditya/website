@@ -3,6 +3,7 @@ import {
   DocNodeInterface,
   JsDocTagParam,
   ParamIdentifierDef,
+  TsTypeDefLiteral,
 } from "deno_doc/types.d.ts";
 import { PropertyName } from "./PropertyName.tsx";
 import { TsType } from "./TsType.tsx";
@@ -26,6 +27,30 @@ export function Method(
     : methodTypes.find((v) =>
       op.tsType?.kind == "typeRef" && v.name == op.tsType.typeRef.typeName
     );
+  for (const tsType of p?.interfaceDef.extends ?? []) {
+    if (tsType.kind == "typeRef" && tsType.repr != "Omit") {
+      const type = methodTypes.find((v) => v.name == tsType.repr);
+      for (const property of type?.interfaceDef.properties ?? []) {
+        p?.interfaceDef.properties.push(property);
+      }
+    } else if (tsType.kind == "typeRef") {
+      const [ref, excluded_] = tsType.typeRef.typeParams ?? [];
+      const excluded = excluded_.kind == "union"
+        ? excluded_.union.filter((v): v is TsTypeDefLiteral =>
+          v.kind == "literal"
+        ).map((v) => v.literal.kind == "string" ? v.literal.string : "")
+        : [];
+      if (ref.kind == "typeRef") {
+        const type = methodTypes.find((v) => v.name == ref.repr);
+        for (const property of type?.interfaceDef.properties ?? []) {
+          if (excluded.includes(property.name)) {
+            continue;
+          }
+          p?.interfaceDef.properties.push(property);
+        }
+      }
+    }
+  }
   const t = op?.tsType?.kind == "typeLiteral" ? op.tsType : undefined;
   return (
     <div class="flex flex-col gap-3">
