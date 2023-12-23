@@ -34,7 +34,7 @@ await client.sendMessage(36265675, "Hey you!");
 
 ## Telegram API Functions
 
-To call a Telegram API functions directly, access its identifier from `client.api`, and call it like any other async function.
+To call a Telegram API function directly, access its identifier from `client.api`, and call it like any other async function.
 
 ```ts
 await client.api.functionName(...);
