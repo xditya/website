@@ -84,7 +84,8 @@ it.codeGroup(
 
 %>
 
-Note that type identifiers under the types namespace are different from how they look in the schema as their first character is uppercase.
+> Note that type identifiers under the `types` namespace are different from how they look in the schema as their first character is uppercase.
+
 The TL references can be useful when working with the raw API: [Functions](/tl/functions), [Enums](/tl/enums), [Types](/tl/types).
 
 <%=
