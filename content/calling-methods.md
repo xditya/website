@@ -34,56 +34,16 @@ await client.sendMessage(36265675, "Hey you!");
 
 ## Telegram API Functions
 
-To call a Telegram API function directly, import the `functions` namespace, construct a function call, and pass it to the `invoke` method of the client.
+To call a Telegram API functions directly, access its identifier from `client.api`, and call it like any other async function.
 
-<%=
-
-it.codeGroup(
-
-    [
-        "Deno",
-        "ts",
-        `import { functions } from "${it.deno}";
-
-await client.invoke(new functions.FunctionName(...));`
-],
-
-    [
-        "Node.js",
-        "ts",
-        `
-
-const { functions } = require("@mtkruto/node");
-
-client.invoke(new functions.FunctionName(...)); // Promise
-
-`.trim()
-],
-
-    [
-        "Web (Node.js)",
-        "ts",
-        `import { functions } from "@mtkruto/browser";
-
-await client.invoke(new functions.FunctionName(...));`
-],
-
-    [
-        "Web (esm.sh)",
-        "ts",
-        `import { functions } from "${it.esm}";
-
-await client.invoke(new functions.FunctionName(...));`
-],
-
-)
-
-%>
+```ts
+await client.api.functionName(...);
+```
 
 Here's an example ping call.
 
 ```ts
-await client.invoke(new functions.Ping({ pingId: 2132n });
+await client.api.ping({ ping_id: 2132n });
 ```
 
 If you need to provide Telegram API types as arguments, access them from the `types` namespace.
@@ -124,8 +84,8 @@ it.codeGroup(
 
 %>
 
-Note that identifiers differ from how they look in schemas.
-The TL references can be useful to identify those differences: [Functions](/tl/functions), [Enums](/tl/enums), [Types](/tl/types).
+Note that type identifiers under the types namespace are different from how they look in the schema as their first character is uppercase.
+The TL references can be useful when working with the raw API: [Functions](/tl/functions), [Enums](/tl/enums), [Types](/tl/types).
 
 <%=
 
