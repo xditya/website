@@ -14,23 +14,32 @@ export default async function Types(_req: Request, ctx: RenderContext) {
         Types
       </h1>
       <div class="grid grid-cols-[min-content_1fr] gap-x-3 gap-y-2 overflow-x-auto">
-        {types.map((v) => (
-          <>
-            <a
-              href={`/${preview ? "gh/" : ""}types/${v.name}`}
-              class="link break-all w-[200px] sm:break-keep sm:w-auto"
-            >
-              {v.name}
-            </a>
-            <div>
-              {v.jsDoc?.doc
-                ? <Description>{v.jsDoc.doc}</Description>
-                : <MutedText italic>No Description</MutedText>}
-            </div>
-            <div class="w-full border-b border-db col-span-2">
-            </div>
-          </>
-        ))}
+        {types
+          .filter((v) => {
+            for (const tag of (v.jsDoc?.tags ?? [])) {
+              if (tag.kind == "unsupported" && tag.value == "@unlisted") {
+                return false;
+              }
+            }
+            return true;
+          })
+          .map((v) => (
+            <>
+              <a
+                href={`/${preview ? "gh/" : ""}types/${v.name}`}
+                class="link break-all w-[200px] sm:break-keep sm:w-auto"
+              >
+                {v.name}
+              </a>
+              <div>
+                {v.jsDoc?.doc
+                  ? <Description>{v.jsDoc.doc}</Description>
+                  : <MutedText italic>No Description</MutedText>}
+              </div>
+              <div class="w-full border-b border-db col-span-2">
+              </div>
+            </>
+          ))}
       </div>
     </>
   );
