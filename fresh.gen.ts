@@ -11,7 +11,6 @@ import * as $_version_tl_functions from "./routes/[version]/tl/functions.tsx";
 import * as $_version_tl_functions_name_ from "./routes/[version]/tl/functions/[name].tsx";
 import * as $_version_tl_types from "./routes/[version]/tl/types.tsx";
 import * as $_version_tl_types_name_ from "./routes/[version]/tl/types/[name].tsx";
-import * as $_version_types_copy_name_ from "./routes/[version]/types copy/[name].tsx";
 import * as $_version_types_name_ from "./routes/[version]/types/[name].tsx";
 import * as $_version_updates_name_ from "./routes/[version]/updates/[name].tsx";
 import * as $_version_xtypes_ from "./routes/[version]/xtypes_.tsx";
@@ -39,7 +38,6 @@ const manifest = {
     "./routes/[version]/tl/functions/[name].tsx": $_version_tl_functions_name_,
     "./routes/[version]/tl/types.tsx": $_version_tl_types,
     "./routes/[version]/tl/types/[name].tsx": $_version_tl_types_name_,
-    "./routes/[version]/types copy/[name].tsx": $_version_types_copy_name_,
     "./routes/[version]/types/[name].tsx": $_version_types_name_,
     "./routes/[version]/updates/[name].tsx": $_version_updates_name_,
     "./routes/[version]/xtypes_.tsx": $_version_xtypes_,
