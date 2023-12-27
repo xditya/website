@@ -5,6 +5,10 @@ on: workflow_dispatch
 permissions:
   contents: write
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   doc:
     runs-on: ubuntu-latest
