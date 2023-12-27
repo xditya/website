@@ -1,7 +1,7 @@
 import { FreshContext } from "$fresh/server.ts";
 
-const region = Deno.env.get('DENO_REGION');
-const from = region !== undefined ? ` from ${region}` : ''
+const region = Deno.env.get("DENO_REGION");
+const from = region !== undefined ? ` from ${region}` : "";
 export async function handler(req: Request, ctx: FreshContext) {
   try {
     const then = Date.now();
@@ -18,7 +18,9 @@ export async function handler(req: Request, ctx: FreshContext) {
           const result = await reader.read();
           if (result?.done) {
             controller.enqueue(
-              new TextEncoder().encode(`\n\n<!--- generated in ${diff}ms${from} --->`),
+              new TextEncoder().encode(
+                `\n\n<!--- generated in ${diff}ms${from} --->`,
+              ),
             );
             controller.close();
           } else if (result?.value) {

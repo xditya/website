@@ -392,12 +392,12 @@ function removePrefix(td: TsTypeDef, prefix: string) {
 
 async function doc(spec: string): ReturnType<typeof doc_> {
   const path = `./doc/${spec.replaceAll("/", "")}.json`;
-  try {
-    return JSON.parse(await Deno.readTextFile(path));
-  } catch {
-    //
-  }
   if (!Deno.env.get("WRITE")) {
+    try {
+      return JSON.parse(await Deno.readTextFile(path));
+    } catch {
+      //
+    }
     throw new UnsupportedVersion();
   }
   let doc: Awaited<ReturnType<typeof doc_>>;
