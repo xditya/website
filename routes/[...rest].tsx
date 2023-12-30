@@ -8,7 +8,7 @@ export default async function Rest(
 ) {
   if (
     rest.startsWith("types/") || rest.startsWith("methods/") ||
-    rest.startsWith("tl/")
+    rest.startsWith("tl/") || rest.startsWith("updates/")
   ) {
     const url = new URL(req.url);
     return Response.redirect(

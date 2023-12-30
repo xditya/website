@@ -189,7 +189,8 @@ export async function getDocs(version?: string) {
     .filter((v): v is DocNodeInterface => v.kind == "interface");
 
   const getLink = (typeRef: string) => {
-    const type = types.find((v) => v.name == typeRef);
+    const type = types.find((v) => v.name == typeRef) ??
+      updates.interfaceDef.properties.find((v) => v.name == typeRef);
     if (type !== undefined) {
       return `/${version}/types/${type.name}`;
     } else {

@@ -9,8 +9,9 @@ export default async function Type(
   _request: Request,
   { params: { version, name } }: PageProps,
 ) {
-  const { types, getLink } = await getDocs(version);
-  const type = types.find((v) => v.name == name);
+  const { types, updateTypes, getLink } = await getDocs(version);
+  const type = types.find((v) => v.name == name) ??
+    updateTypes.find((v) => v.name == name);
 
   if (type === undefined) {
     return <NotFound />;
