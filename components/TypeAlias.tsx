@@ -9,8 +9,19 @@ export function TypeAlias(
   },
 ) {
   return (
-    <div class="font-mono">
-      <TsType getLink={getLink}>{typeAlias.tsType}</TsType>
+    <div class="font-mono whitespace-pre">
+      {typeAlias.tsType.kind == "union"
+        ? (
+          <>
+            <span class="opacity-50">{"| "}</span>
+            {typeAlias.tsType.union.map((v) => (
+              <TsType getLink={getLink}>{v}</TsType>
+            )).reduce((a, b) => (
+              <>{a}{<span class="opacity-50">{"\n| "}</span>}{b}</>
+            ))}
+          </>
+        )
+        : <TsType getLink={getLink}>{typeAlias.tsType}</TsType>}
     </div>
   );
 }
