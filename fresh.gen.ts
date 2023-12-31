@@ -22,7 +22,6 @@ import * as $index from "./routes/index.tsx";
 import * as $methods from "./routes/methods.tsx";
 import * as $source_map from "./routes/source-map.tsx";
 import * as $types from "./routes/types.tsx";
-import * as $updates from "./routes/updates.tsx";
 import * as $versions from "./routes/versions.tsx";
 import * as $Sidebar from "./islands/Sidebar.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -49,7 +48,6 @@ const manifest = {
     "./routes/methods.tsx": $methods,
     "./routes/source-map.tsx": $source_map,
     "./routes/types.tsx": $types,
-    "./routes/updates.tsx": $updates,
     "./routes/versions.tsx": $versions,
   },
   islands: {

@@ -24,7 +24,6 @@ const links = [
     [
       ["Methods", "/methods"],
       ["Types", "/types"],
-      ["Updates", "/updates"],
       ["Errors", "/errors"],
     ],
   ],

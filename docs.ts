@@ -23,21 +23,18 @@ export async function getDocs(version?: string) {
     version == "gh"
       ? "https://raw.githubusercontent.com/MTKruto/MTKruto/main/mod.ts"
       : `https://deno.land/x/mtkruto@${version}/mod.ts`,
-    // `file:///home/roj/Projects/MTKruto/mod.ts`,
   );
 
   const functions = await doc(
     version == "gh"
       ? "https://raw.githubusercontent.com/MTKruto/MTKruto/main/tl/3_functions.ts"
       : `https://deno.land/x/mtkruto@${version}/tl/3_functions.ts`,
-    // `file:///home/roj/Projects/MTKruto/tl/3_functions.ts`,
   );
 
   const types2 = await doc(
     version == "gh"
       ? "https://raw.githubusercontent.com/MTKruto/MTKruto/main/tl/2_types.ts"
       : `https://deno.land/x/mtkruto@${version}/tl/2_types.ts`,
-    // `file:///home/roj/Projects/MTKruto/tl/2_types.ts`,
   );
 
   const typeNodes = mod.filter((v) => v.location.filename.includes("/types/"));
@@ -50,17 +47,7 @@ export async function getDocs(version?: string) {
     )?.namespaceDef.elements ?? [];
 
   const methodTypeNodes = mod.filter((v) =>
-    v.location.filename.endsWith("/client/3_types.ts")
-  );
-
-  const updates = methodTypeNodes.find((v) =>
-    v.kind == "interface" && v.name == "Update"
-  )! as DocNodeInterface;
-  const updateTypes = methodTypeNodes.filter((
-    v,
-  ): v is DocNodeTypeAlias | DocNodeInterface =>
-    (v.name == "AuthorizationState" || v.name == "ConnectionState") &&
-    (v.kind == "interface" || v.kind == "typeAlias")
+    v.location.filename.endsWith("/client/3_params.ts")
   );
 
   const tlTypes = types2
@@ -189,18 +176,12 @@ export async function getDocs(version?: string) {
     .filter((v): v is DocNodeInterface => v.kind == "interface");
 
   const getLink = (typeRef: string) => {
-    const type = types.find((v) => v.name == typeRef) ??
-      updates.interfaceDef.properties.find((v) => v.name == typeRef);
+    const type = types.find((v) => v.name == typeRef) 
     if (type !== undefined) {
       return `/${version}/types/${type.name}`;
     } else {
-      const type = updateTypes.find((v) => v.name == typeRef);
-      if (type !== undefined) {
-        return `/${version}/updates/${type.name}`;
-      } else {
         return null;
-      }
-    }
+         }
   };
 
   const getTlLink = (typeRef: string): string | null => {
@@ -239,8 +220,6 @@ export async function getDocs(version?: string) {
     tlTypes,
     tlFunctions,
     tlEnums,
-    updates,
-    updateTypes,
   };
 }
 
