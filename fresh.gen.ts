@@ -12,7 +12,6 @@ import * as $_version_tl_functions_name_ from "./routes/[version]/tl/functions/[
 import * as $_version_tl_types from "./routes/[version]/tl/types.tsx";
 import * as $_version_tl_types_name_ from "./routes/[version]/tl/types/[name].tsx";
 import * as $_version_types_name_ from "./routes/[version]/types/[name].tsx";
-import * as $_version_updates_name_ from "./routes/[version]/updates/[name].tsx";
 import * as $_version_xtypes_ from "./routes/[version]/xtypes_.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
@@ -38,7 +37,6 @@ const manifest = {
     "./routes/[version]/tl/types.tsx": $_version_tl_types,
     "./routes/[version]/tl/types/[name].tsx": $_version_tl_types_name_,
     "./routes/[version]/types/[name].tsx": $_version_types_name_,
-    "./routes/[version]/updates/[name].tsx": $_version_updates_name_,
     "./routes/[version]/xtypes_.tsx": $_version_xtypes_,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,

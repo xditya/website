@@ -2,7 +2,10 @@
 
 You can handle updates by assigning update handlers to the client.
 A handler is a function that takes two arguments: `ctx` and `next`.
-`ctx` is the received update (see [Updates](/updates) for all kinds of updates) with context-aware methods and shortcuts.
+
+`ctx` is the received update with context-aware methods and shortcuts.
+See all types of updates [here](/types/Update).
+
 `next` is a function that passes the update to the next handlers.
 
 Once an update reaches a handler, it _won't_ reach others unless it calls `next`.
