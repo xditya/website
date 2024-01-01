@@ -198,8 +198,8 @@ client.filter(
 
 ## on
 
-`on` works like `filter` but instead of providing a function that checks for a condition, you provide it an update type, and optionally, some required fields.
-If the update matched the provided type and had all the required fields, the handler gets called.
+`on` works like `filter` but instead of providing a function that checks for a condition, you provide it a filter query.
+If the update matched the provided filter, the handler gets called.
 
 ```asciiart
 |
@@ -242,7 +242,7 @@ client.on("connectionState", ({ connectionState }) => {
 });
 
 /** Handles text messages */
-client.on(["message", "text"], ({ message }) => {
+client.on("message:text", ({ message }) => {
   // do something with message.text
 });
 

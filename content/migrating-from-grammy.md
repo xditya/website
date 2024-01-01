@@ -172,7 +172,7 @@ bot.on("inlineQuery", async (ctx) => {
 
 ```ts
 // Note: This handles channel posts, too.
-client.on(["message", "text"], (ctx) => {
+client.on("message:text", (ctx) => {
   await ctx.reply("You sent a text message.");
 });
 
