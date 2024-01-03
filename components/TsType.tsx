@@ -95,7 +95,7 @@ function Literal({ children: literal }: { children: LiteralDef }) {
     case "number":
       return <>{literal.number}</>;
     case "boolean":
-      return <>{literal.boolean}</>;
+      return <>{String(literal.boolean)}</>;
     case "template":
       break;
   }
