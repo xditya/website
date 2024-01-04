@@ -1,8 +1,21 @@
 import { FreshContext } from "$fresh/server.ts";
+import versions from "../versions.ts";
 
 const region = Deno.env.get("DENO_REGION");
 const from = region !== undefined ? ` from ${region}` : "";
 export async function handler(req: Request, ctx: FreshContext) {
+  const { pathname } = new URL(req.url);
+
+  if (
+    pathname.startsWith("/types/") || pathname.startsWith("/methods/") ||
+    pathname.startsWith("/tl/")
+  ) {
+    const url = new URL(req.url);
+    return Response.redirect(
+      new URL(`/${versions[0]}${url.pathname}`, req.url),
+    );
+  }
+
   try {
     const then = Date.now();
     const res = await ctx.next();

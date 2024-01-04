@@ -2,7 +2,6 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $_rest_ from "./routes/[...rest].tsx";
 import * as $_version_methods from "./routes/[version]/methods.tsx";
 import * as $_version_methods_name_ from "./routes/[version]/methods/[name].tsx";
 import * as $_version_tl_enums from "./routes/[version]/tl/enums.tsx";
@@ -28,7 +27,6 @@ import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/[...rest].tsx": $_rest_,
     "./routes/[version]/methods.tsx": $_version_methods,
     "./routes/[version]/methods/[name].tsx": $_version_methods_name_,
     "./routes/[version]/tl/enums.tsx": $_version_tl_enums,

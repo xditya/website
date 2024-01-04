@@ -16,7 +16,7 @@ export type Docs = Awaited<ReturnType<typeof getDocs>>;
 export async function getDocs(version?: string) {
   version ??= versions[0];
   if (!(versions.includes(version))) {
-    throw new InvalidVersion();
+    throw new InvalidVersion(version);
   }
 
   const mod = await doc(
