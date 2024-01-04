@@ -5,9 +5,8 @@ import { ClassMethodDef, DocNode, JsDocTagDoc } from "deno_doc/types.d.ts";
 function getV(v: DocNode | ClassMethodDef, a: string) {
   return [fixName(v.name), {
     link: `https://mtkruto.deno.dev/${a}/${fixName(v.name)}`,
-    example: (v.jsDoc?.tags?.find((v) =>
-      v.kind == "example"
-    ) as JsDocTagDoc).doc,
+    example: (v.jsDoc?.tags?.find((v) => v.kind == "example") as JsDocTagDoc)
+      ?.doc,
   }] as const;
 }
 
