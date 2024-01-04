@@ -21,6 +21,7 @@ import {
 } from "deno_doc/types.d.ts";
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
+import { fixName } from "../misc.ts";
 
 export interface LinkGetter {
   (typeRef: string): string | null;
@@ -133,9 +134,9 @@ function TypeRef(
   const link = getLink(typeRef.typeName);
   let name: JSX.Element;
   if (link != null) {
-    name = <a href={link} class="link">{typeRef.typeName}</a>;
+    name = <a href={link} class="link">{fixName(typeRef.typeName)}</a>;
   } else {
-    name = <span href="/">{typeRef.typeName}</span>;
+    name = <span href="/">{fixName(typeRef.typeName)}</span>;
   }
   return (
     <>

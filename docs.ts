@@ -7,6 +7,7 @@ import {
   TsTypeDef,
 } from "deno_doc/types.d.ts";
 import versions from "./versions.ts";
+import { fixName } from "./misc.ts";
 
 export class InvalidVersion extends Error {
 }
@@ -191,7 +192,7 @@ export async function getDocs(version?: string) {
       }
       const type = tlTypes.find((v) => v.name == typeRef);
       if (type !== undefined) {
-        return `/${version}/tl/types/${type.name}`;
+        return `/${version}/tl/types/${fixName(type.name)}`;
       }
       if (typeRef.startsWith("types.")) {
         return null;
@@ -199,7 +200,7 @@ export async function getDocs(version?: string) {
     }
     const type = tlEnums.find((v) => v.name == typeRef);
     if (type !== undefined) {
-      return `/${version}/tl/enums/${type.name}`;
+      return `/${version}/tl/enums/${fixName(type.name)}`;
     } else {
       if (typeRef.startsWith("enums.")) {
         return getTlLink(typeRef.slice("enums.".length));

@@ -33,10 +33,10 @@ export default async function Type(
       </div>
       {union && (
         <div>
-          <MutedText small>UNION</MutedText>
+          <MutedText small>ENUM</MutedText>
           <div class="font-mono">
-            <a href={`/${version}/tl/enums/${union}`} class="link">
-              {union}
+            <a href={`/${version}/tl/enums/${fixName(union)}`} class="link">
+              {fixName(union)}
             </a>
           </div>
         </div>
